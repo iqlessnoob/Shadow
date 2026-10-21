@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#090b13">
+<title>SHADOWBOUND</title>
+<style>
+:root{--bg:#090b13;--panel:rgba(13,17,29,.94);--line:rgba(135,170,224,.25);--cyan:#72e5db;--gold:#f3c76b;--red:#ff657a;--muted:#8b98b5}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:none}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#eef2ff;overscroll-behavior:none;user-select:none}
+#game{display:block;width:100vw;height:100vh;height:100svh;outline:none}
+#controls{position:fixed;inset:0;pointer-events:none;display:none}
+.pad,.actions{position:absolute;bottom:max(13px,env(safe-area-inset-bottom));display:grid;gap:7px;pointer-events:none}
+.pad{left:max(13px,env(safe-area-inset-left));grid-template-columns:repeat(3,clamp(39px,7.2vh,58px));grid-template-rows:repeat(2,clamp(39px,7.2vh,58px))}
+.actions{right:max(13px,env(safe-area-inset-right));grid-template-columns:repeat(3,clamp(44px,8vh,64px));grid-template-rows:repeat(2,clamp(39px,7.2vh,58px));align-items:end}
+.ctrl{pointer-events:auto;border:1px solid rgba(170,202,255,.33);border-radius:15px;background:rgba(18,25,43,.52);color:#f0f6ff;font-size:clamp(17px,3.3vh,25px);font-weight:750;box-shadow:inset 0 1px rgba(255,255,255,.08);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:0;min-width:0;min-height:0}
+.ctrl small{font-size:9px;letter-spacing:.7px;display:block;font-weight:800;line-height:1.05}
+.ctrl:active,.ctrl.pressed{background:rgba(88,210,205,.48);border-color:var(--cyan);transform:scale(.96)}
+.pad .up{grid-column:2;grid-row:1}.pad .left{grid-column:1;grid-row:2}.pad .down{grid-column:2;grid-row:2}.pad .right{grid-column:3;grid-row:2}
+.actions .jump{grid-column:1;grid-row:1}.actions .dash{grid-column:2;grid-row:1}.actions .crouch{grid-column:3;grid-row:1}.actions .attack{grid-column:2/4;grid-row:2;background:rgba(112,47,75,.62);border-color:rgba(255,115,150,.45);font-size:12px;letter-spacing:1.5px}.actions .potion{grid-column:1;grid-row:2;background:rgba(54,91,89,.62);font-size:11px}
+@media (orientation:portrait){.pad{bottom:14px}.actions{bottom:14px}.ctrl{border-radius:12px}.pad{grid-template-columns:repeat(3,43px);grid-template-rows:repeat(2,43px)}.actions{grid-template-columns:repeat(3,46px);grid-template-rows:repeat(2,43px)}}
+</style>
+</head>
+<body>
+<canvas id="game" aria-label="Shadowbound action game"></canvas>
+<div id="controls" aria-label="Touch controls">
+  <div class="pad">
+    <button class="ctrl up" data-control="up" aria-label="Aim up">▲</button>
+    <button class="ctrl left" data-control="left" aria-label="Move left">◀</button>
+    <button class="ctrl down" data-control="down" aria-label="Drop down">▼</button>
+    <button class="ctrl right" data-control="right" aria-label="Move right">▶</button>
+  </div>
+  <div class="actions">
+    <button class="ctrl jump" data-control="jump" aria-label="Jump">↑<small>JUMP</small></button>
+    <button class="ctrl dash" data-control="dash" aria-label="Dash">»<small>DASH</small></button>
+    <button class="ctrl crouch" data-control="crouch" aria-label="Crouch">⌄<small>DUCK</small></button>
+    <button class="ctrl potion" data-control="potion" aria-label="Use potion">✚<small>POTION</small></button>
+    <button class="ctrl attack" data-control="attack" aria-label="Attack">ATTACK / CAST</button>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
